@@ -23,10 +23,10 @@ Reload._onMigrate(function (retry) {
   retryReloadFunc = retry;
 
   // Prevent duplicate listeners in case _onMigrate is called multiple times
-  document.removeEventListener("resume", retryReloadOnResume, false);
+  document.removeEventListener('resume', retryReloadOnResume, false);
 
   if (!hasResumed) {
-    document.addEventListener("resume", retryReloadOnResume, false);
+    document.addEventListener('resume', retryReloadOnResume, false);
   }
 
   // Reload the app if we resumed
