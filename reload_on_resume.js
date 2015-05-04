@@ -2,6 +2,8 @@
 // 1) wait until the application has resumed to reload the app
 // 2) show the splashscreen while the app is reloading
 
+var newVersionAvailable = new ReactiveVar(false);
+
 var hasResumed = false;
 var retryReloadFunc = null;
 
@@ -20,6 +22,8 @@ var retryReloadOnResume = function () {
 };
 
 Reload._onMigrate(function (retry) {
+  newVersionAvailable.set(true);
+
   retryReloadFunc = retry;
 
   // Prevent duplicate listeners in case _onMigrate is called multiple times
@@ -32,3 +36,12 @@ Reload._onMigrate(function (retry) {
   // Reload the app if we resumed
   return [hasResumed];
 });
+
+/**
+ * @summary Reactive function that returns true when there is a new version of
+ * the app downloaded, can be used to prompt the user to close and reopen the
+ * app to get the new version.
+ */
+Reload.isWaitingForResume = function () {
+  return newVersionAvailable.get();
+};
