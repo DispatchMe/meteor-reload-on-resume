@@ -1,7 +1,7 @@
 Package.describe({
   name: 'dispatch:reload-on-resume',
   summary: 'Reload after the cordova app is resumed and show a splashscreen during the reload.',
-  version: '0.0.1',
+  version: '0.0.2',
   git: 'https://github.com/DispatchMe/meteor-reload-on-resume.git'
 });
 
